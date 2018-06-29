@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyProperties : ScriptableObject {
 
     [Header("Movement Properties")]
+    [Range(0f, 1f)]
 	public float speed = 2f;
 
     [Header("Init Values")]

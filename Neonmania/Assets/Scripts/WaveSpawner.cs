@@ -8,6 +8,8 @@ public class WaveSpawner : MonoBehaviour {
     public Transform spawnPlane;
     public Transform player;
 
+    public EnemyProperties[] enemyTypes;
+
     public float timeBetweenWaves = 5f;
     public float startCountdown = 2f;
     public float timeBetweenEnemies = .5f;
@@ -35,7 +37,10 @@ public class WaveSpawner : MonoBehaviour {
 
     IEnumerator SpawnWave() {
 
-        for (int i = 0; i <= waveNumber; i++) {
+        float waveStrength = 0f;
+        float maxWaveStrength = (float) System.Math.Log10(waveNumber);
+
+        while (waveStrength <= maxWaveStrength) {
             SpawnEnemy();
             yield return new WaitForSeconds(timeBetweenEnemies);
         }
