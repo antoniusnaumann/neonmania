@@ -6,16 +6,22 @@ public class WaveSpawner : MonoBehaviour {
 
     public Transform enemy;
     public Transform spawnPlane;
+    public Transform player;
 
     public float timeBetweenWaves = 5f;
     public float startCountdown = 2f;
     public float timeBetweenEnemies = .5f;
+    public float minimumDistanceToPlayer = 2f;
 
     private int waveNumber = 0;
 
+    private Bounds bounds;
+
     // Use this for initialization
     void Start () {
-	}
+        Mesh planeMesh = spawnPlane.GetComponent<MeshFilter>().mesh;
+        bounds = planeMesh.bounds;
+    }
 
     // Update is called once per frame
     void Update() {
@@ -40,12 +46,18 @@ public class WaveSpawner : MonoBehaviour {
     private void SpawnEnemy() {
 
         Vector3 pos = spawnPlane.position;
-        Vector3 scale = spawnPlane.localScale / 2;
+        float scaleX = (spawnPlane.localScale.x * bounds.size.x) / 2;
+        float scaleZ = (spawnPlane.localScale.z * bounds.size.z) / 2;
 
-        float x = Random.Range(pos.x - scale.x, pos.x + scale.x);
-        float y = Random.Range(pos.y - scale.y, pos.y + scale.y);
+        Vector3 spawnPoint;
 
-        Vector3 spawnPoint = new Vector3(x, y, transform.localScale.z / 2);
+        do {
+            float x = Random.Range(pos.x - scaleX, pos.x + scaleX);
+            float z = Random.Range(pos.z - scaleZ, pos.z + scaleZ);
+
+            spawnPoint = new Vector3(x, enemy.localScale.y / 2, z);
+        } while ( (player.position - spawnPoint).magnitude < minimumDistanceToPlayer);
+
 
         Instantiate(enemy, spawnPoint, new Quaternion());
     }
