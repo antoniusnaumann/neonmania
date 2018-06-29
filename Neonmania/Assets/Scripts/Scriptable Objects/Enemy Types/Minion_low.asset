@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Name: Minion_low
   m_EditorClassIdentifier: 
   speed: 2
+  movementLogic: {fileID: 0}
   weakness: 1
   scale: 0.5
   strengthIndicator: 0.1
+  deathHandler: {fileID: 0}
   isBoss: 0
