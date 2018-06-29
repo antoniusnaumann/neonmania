@@ -7,8 +7,8 @@ public class PlayerControl : MonoBehaviour {
     private Rigidbody rb;
 
 
-    public float acceleration = 1f;
-    public float maxSpeed = 10f;
+    public float acceleration = 10f;
+    public float maxSpeed = 30f;
     public float deceleration = 2f;
 
 	// Use this for initialization
