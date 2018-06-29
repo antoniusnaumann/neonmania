@@ -58,9 +58,9 @@ public class PlayerControl : MonoBehaviour {
                 Vector3 aimVector = new Vector3(shootHorizontal, 10f, shootVertical);
                 GameObject projectile = Instantiate(projectilePrefab, transform) as GameObject;
                 ProjectileController projectileController = projectile.GetComponent<ProjectileController>();
-                projectileController.color = colorChanger.GetColor();
-                projectileController.direction = aimVector();
-                projectileController.velocity = 40f;
+                //projectileController.color = colorChanger.GetColor();
+                //projectileController.direction = aimVector();
+                //projectileController.velocity = 40f;
             }
         }
 		
