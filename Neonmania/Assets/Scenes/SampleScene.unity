@@ -215,6 +215,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1079610139}
+  offset: {x: 0, y: 0, z: 0}
+  zoomOffset: {x: 0, y: 0, z: 0}
+  zoomFactor: 0
+  maxZoom: 0
+  playerrb: {fileID: 0}
 --- !u!20 &282840813
 Camera:
   m_ObjectHideFlags: 0
@@ -457,6 +462,10 @@ MonoBehaviour:
   enemy: {fileID: 1683257992604568, guid: da9c70ea3ed54464b955c8fdd666b19d, type: 2}
   spawnPlane: {fileID: 1323457083}
   player: {fileID: 1079610143}
+  minionTypes:
+  - {fileID: 11400000, guid: 75edf39147a941649a58939134f2060b, type: 2}
+  bossTypes:
+  - {fileID: 11400000, guid: 75edf39147a941649a58939134f2060b, type: 2}
   timeBetweenWaves: 5
   startCountdown: 2
   timeBetweenEnemies: 0.5
