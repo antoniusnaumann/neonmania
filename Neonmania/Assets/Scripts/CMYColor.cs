@@ -3,11 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class CMYColor
-{
+public sealed class CMYColor {
 
 	public static readonly CMYColor
-		CYAN = new CMYColor(1),
+	CYAN = new CMYColor(1),
 		MAGENTA = new CMYColor(2),
 		YELLOW = new CMYColor(4),
 		RED = new CMYColor(6),
@@ -16,12 +15,12 @@ public sealed class CMYColor
 		WHITE = new CMYColor(0),
 		BLACK = new CMYColor(7);
 
-	protected readonly float c, m, y;
+	private readonly float c, m, y;
 
 	public CMYColor(byte cmy) : this(
-        cmy & 0x4,
-        cmy & 0x2,
-        cmy & 0x1
+		cmy & 0x4,
+		cmy & 0x2,
+		cmy & 0x1
 	) { }
 
 	public CMYColor(bool cyan, bool magenta, bool yellow) : this(
@@ -31,29 +30,28 @@ public sealed class CMYColor
 	) { }
 
 	public CMYColor(float cyan, float magenta, float yellow) {
-		this.c = cyan;
-		this.m = magenta;
-		this.y = yellow;
+		this.c = Mathf.Clamp(cyan, 0.0f, 1.0f);
+		this.m = Mathf.Clamp(magenta, 0.0f, 1.0f);
+		this.y = Mathf.Clamp(yellow, 0.0f, 1.0f);
 	}
 
 	public bool IsBlack() {
-		return this.c == 1 && this.m == 1 && this.y == 1;
+		return this.c >= 1 && this.m >= 1 && this.y >= 1;
 	}
 
-	public bool IsWhite()
-	{
-		return this.c == 0 && this.m == 0 && this.y == 0;
+	public bool IsWhite() {
+		return this.c <= 0 && this.m <= 0 && this.y <= 0;
 	}
 
-    public static CMYColor operator +(CMYColor c1, CMYColor c2) {
-        return new CMYColor(
-            c1.c + c2.c,
-            c1.m + c2.m,
-            c1.y + c2.y
-        );
-    }
+	public static CMYColor operator +(CMYColor c1, CMYColor c2) {
+		return new CMYColor(
+			c1.c + c2.c,
+			c1.m + c2.m,
+			c1.y + c2.y
+		);
+	}
 
-	public static CMYColor operator * (float f, CMYColor c) {
+	public static CMYColor operator *(float f, CMYColor c) {
 		return new CMYColor(
 			f * c.c,
 			f * c.m,
@@ -62,7 +60,7 @@ public sealed class CMYColor
 	}
 
 	public Color AsColor() {
-		return new Color(1 - this.c, 1 - this.m, 1 - this.y);
+		return new Color(1.0f - this.c, 1.0f - this.m, 1.0f - this.y);
 	}
 
 }
