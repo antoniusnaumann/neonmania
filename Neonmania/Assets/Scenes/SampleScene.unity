@@ -409,7 +409,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4798293186133000, guid: d1d07de129d15a74390304540206fded, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d1d07de129d15a74390304540206fded, type: 2}
@@ -441,7 +441,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1942816431
 MonoBehaviour:
@@ -454,7 +454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2bea02f5e592164980aa60bf1ff6931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 4060328548485418, guid: da9c70ea3ed54464b955c8fdd666b19d, type: 2}
+  enemy: {fileID: 1683257992604568, guid: da9c70ea3ed54464b955c8fdd666b19d, type: 2}
   spawnPlane: {fileID: 1323457083}
   player: {fileID: 1079610143}
   timeBetweenWaves: 5

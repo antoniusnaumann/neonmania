@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour {
 
-    public Transform enemy;
+    public GameObject enemy;
     public Transform spawnPlane;
     public Transform player;
 
@@ -55,10 +55,12 @@ public class WaveSpawner : MonoBehaviour {
             float x = Random.Range(pos.x - scaleX, pos.x + scaleX);
             float z = Random.Range(pos.z - scaleZ, pos.z + scaleZ);
 
-            spawnPoint = new Vector3(x, enemy.localScale.y / 2, z);
+            spawnPoint = new Vector3(x, enemy.transform.localScale.y / 2, z);
         } while ( (player.position - spawnPoint).magnitude < minimumDistanceToPlayer);
 
 
-        Instantiate(enemy, spawnPoint, new Quaternion());
+        GameObject newEnemy = Instantiate(enemy, spawnPoint, new Quaternion());
+
+        newEnemy.GetComponent<EnemyPathfinding>().player = player;
     }
 }
