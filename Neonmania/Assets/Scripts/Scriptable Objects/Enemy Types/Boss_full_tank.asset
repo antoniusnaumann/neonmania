@@ -9,12 +9,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e391b02078ceb37429d7c34238a0cc72, type: 3}
-  m_Name: New EnemyType
+  m_Name: Boss_full_tank
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 0.2
   movementLogic: {fileID: 0}
-  weakness: 1
-  scale: 0.8
-  strengthIndicator: 0.1
+  weakness: 0.05
+  scale: 5
+  strengthIndicator: 0.5
   deathHandler: {fileID: 0}
-  isBoss: 0
+  isBoss: 1
