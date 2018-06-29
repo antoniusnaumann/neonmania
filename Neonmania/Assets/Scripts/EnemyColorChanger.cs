@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class EnemyColorChanger : MonoBehaviour {
 
-	// Use this for initialization
+    public EnemyProperties enemy;
+
+
 	void Start () {
 		
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		
 	}
+
+
 }
