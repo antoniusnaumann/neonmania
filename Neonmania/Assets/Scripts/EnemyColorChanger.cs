@@ -6,14 +6,21 @@ public class EnemyColorChanger : MonoBehaviour {
 
     public EnemyProperties enemy;
 
+    private CMYColor currentColor;
 
-	void Start () {
+
+	private void Start () {
 		
 	}
 	
-	void Update () {
+	private void Update () {
 		
 	}
 
+    private void OnCollisionEnter(Collision collision) {
+        if (collision.collider.CompareTag("PlayerProjectile")) {
+            CMYColor hitColor = collision.collider.GetComponent<ProjectileController>().Color;
 
+        }
+    }
 }
