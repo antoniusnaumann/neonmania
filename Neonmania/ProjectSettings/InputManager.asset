@@ -42,7 +42,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: left ctrl
+    positiveButton: joystick button 0
     altNegativeButton: 
     altPositiveButton: mouse 0
     gravity: 1000
@@ -150,8 +150,8 @@ InputManager:
     axis: 2
     joyNum: 0
   - serializedVersion: 3
-    m_Name: RigthJoystickHorizontal
-    descriptiveName: 
+    m_Name: RightJoystickHorizontal
+    descriptiveName: RightJoystick
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: 
@@ -166,7 +166,7 @@ InputManager:
     axis: 3
     joyNum: 0
   - serializedVersion: 3
-    m_Name: RigthJoystickVertical
+    m_Name: RightJoystickVertical
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -177,7 +177,7 @@ InputManager:
     dead: 0.19
     sensitivity: 1
     snap: 0
-    invert: 1
+    invert: 0
     type: 2
     axis: 4
     joyNum: 0
