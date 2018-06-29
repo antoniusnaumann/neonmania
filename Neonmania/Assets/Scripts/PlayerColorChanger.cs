@@ -21,7 +21,7 @@ public class PlayerColorChanger : MonoBehaviour {
         color = (color + 1) % 3;
     }
 
-    private Color GetColor() {
+    public Color GetColor() {
         switch (color) {
             case 0:
                 return CMYColor.CYAN.AsColor();

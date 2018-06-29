@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,8 @@ public class WaveSpawner : MonoBehaviour {
     public Transform spawnPlane;
     public Transform player;
 
-    public EnemyProperties[] enemyTypes;
+    public EnemyProperties[] minionTypes;
+    public EnemyProperties[] bossTypes;
 
     public float timeBetweenWaves = 5f;
     public float startCountdown = 2f;
@@ -37,18 +39,26 @@ public class WaveSpawner : MonoBehaviour {
 
     IEnumerator SpawnWave() {
 
-        float waveStrength = 0f;
-        float maxWaveStrength = (float) System.Math.Log10(waveNumber);
+        float waveStrength = (float) Math.Log10(waveNumber) + 0.1f;
 
-        while (waveStrength <= maxWaveStrength) {
-            SpawnEnemy();
+        if (waveNumber % 5 == 0 && waveNumber > 0) waveStrength = SpawnEnemy(waveStrength, true);
+
+        while (waveStrength >= 0.1f) {
+            waveStrength = SpawnEnemy(waveStrength);
             yield return new WaitForSeconds(timeBetweenEnemies);
         }
 
         waveNumber++;
     }
 
-    private void SpawnEnemy() {
+    private float SpawnEnemy(float strength, bool boss = false) {
+
+        EnemyProperties[] props = boss ? bossTypes : minionTypes;
+        EnemyProperties[] filteredProps = FilterByStrength(props, strength);
+
+        EnemyProperties prop = RandomEnemyProperty(filteredProps);
+
+        if (prop == null) return strength;
 
         Vector3 pos = spawnPlane.position;
         float scaleX = (spawnPlane.localScale.x * bounds.size.x) / 2;
@@ -57,8 +67,8 @@ public class WaveSpawner : MonoBehaviour {
         Vector3 spawnPoint;
 
         do {
-            float x = Random.Range(pos.x - scaleX, pos.x + scaleX);
-            float z = Random.Range(pos.z - scaleZ, pos.z + scaleZ);
+            float x = UnityEngine.Random.Range(pos.x - scaleX, pos.x + scaleX);
+            float z = UnityEngine.Random.Range(pos.z - scaleZ, pos.z + scaleZ);
 
             spawnPoint = new Vector3(x, enemy.transform.localScale.y / 2, z);
         } while ( (player.position - spawnPoint).magnitude < minimumDistanceToPlayer);
@@ -66,6 +76,26 @@ public class WaveSpawner : MonoBehaviour {
 
         GameObject newEnemy = Instantiate(enemy, spawnPoint, new Quaternion());
 
+        newEnemy.transform.localScale = new Vector3(prop.scale, prop.scale, prop.scale);
+        newEnemy.GetComponent<EnemyPathfinding>().speed = prop.speed;
         newEnemy.GetComponent<EnemyPathfinding>().player = player;
+        newEnemy.GetComponent<EnemyPropertyController>().properties = prop;
+
+        return strength - prop.strengthIndicator;
+    }
+
+    private EnemyProperties RandomEnemyProperty(EnemyProperties[] filteredProps) {
+        return filteredProps[(int) (UnityEngine.Random.Range(0, filteredProps.Length - 1))];
+    }
+
+    private EnemyProperties[] FilterByStrength(EnemyProperties[] props, float strength) {
+
+        List<EnemyProperties> newProps = new List<EnemyProperties>();
+
+        foreach (EnemyProperties p in props) {
+            if (p.strengthIndicator <= strength) newProps.Add(p);
+        }
+
+        return newProps.ToArray();
     }
 }
