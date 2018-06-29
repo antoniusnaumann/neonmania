@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CMYColor
+public sealed class CMYColor
 {
 
 	public static readonly CMYColor
@@ -16,7 +16,7 @@ public class CMYColor
 		WHITE = new CMYColor(0),
 		BLACK = new CMYColor(7);
 
-	protected float c, m, y;
+	protected readonly float c, m, y;
 
 	public CMYColor(byte cmy) : this(
         cmy & 0x4,
@@ -56,6 +56,14 @@ public class CMYColor
             c1.y + c2.y
         );
     }
+
+	public static CMYColor operator * (float f, CMYColor c) {
+		return new CMYColor(
+			f * c.c,
+			f * c.m,
+			f * c.y
+		);
+	}
 
 	public Color AsColor()
 	{
