@@ -7,7 +7,7 @@ public class EnemyProperties : ScriptableObject
 {
 
 	[Header("Movement Properties")]
-	[Range(0f, 1f)]
+	[Range(0f, 4f)]
 	public float speed = 2f;
 	public EnemyPathfinding movementLogic;
 
@@ -26,7 +26,7 @@ public class EnemyProperties : ScriptableObject
 	public float strengthIndicator = 0.1f;
 
     [Header("Handlers")]
-    public IKillable deathHandler;
+    public KillHandler deathHandler;
 
 	[Header("Boss Properties")]
 	// if true, players

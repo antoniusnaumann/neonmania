@@ -70,7 +70,7 @@ public class WaveSpawner : MonoBehaviour {
             float x = UnityEngine.Random.Range(pos.x - scaleX, pos.x + scaleX);
             float z = UnityEngine.Random.Range(pos.z - scaleZ, pos.z + scaleZ);
 
-            spawnPoint = new Vector3(x, enemy.transform.localScale.y / 2, z);
+            spawnPoint = new Vector3(x, prop.scale / 2, z);
         } while ( (player.position - spawnPoint).magnitude < minimumDistanceToPlayer);
 
 
@@ -80,6 +80,8 @@ public class WaveSpawner : MonoBehaviour {
         newEnemy.GetComponent<EnemyPathfinding>().speed = prop.speed;
         newEnemy.GetComponent<EnemyPathfinding>().player = player;
         newEnemy.GetComponent<EnemyPropertyController>().properties = prop;
+
+        newEnemy.transform.SetParent(transform);
 
         return strength - prop.strengthIndicator;
     }
