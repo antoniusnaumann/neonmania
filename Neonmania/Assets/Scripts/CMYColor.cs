@@ -57,6 +57,14 @@ public sealed class CMYColor
         );
     }
 
+	public static CMYColor operator * (float f, CMYColor c) {
+		return new CMYColor(
+			f * c.c,
+			f * c.m,
+			f * c.y
+		);
+	}
+
 	public Color AsColor()
 	{
 		return new Color(1 - this.c, 1 - this.m, 1 - this.y);
