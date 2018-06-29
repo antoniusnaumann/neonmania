@@ -39,12 +39,12 @@ public class CMYColor
 		this.y = yellow;
 	}
 
-	public bool isBlack()
+	public bool IsBlack()
 	{
 		return this.c == 1 && this.m == 1 && this.y == 1;
 	}
 
-	public bool isWhite()
+	public bool IsWhite()
 	{
 		return this.c == 0 && this.m == 0 && this.y == 0;
 	}
@@ -57,7 +57,7 @@ public class CMYColor
         );
     }
 
-	public Color asColor()
+	public Color AsColor()
 	{
 		return new Color(1 - this.c, 1 - this.m, 1 - this.y);
 	}
