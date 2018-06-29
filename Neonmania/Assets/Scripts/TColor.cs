@@ -6,14 +6,14 @@ using UnityEngine;
 public class TColor {
 
     public static readonly TColor
-        CYAN = new TColor(0b001),
-        MAGENTA = new TColor(0b010),
-        YELLOW = new TColor(0b100),
-        RED = new TColor(0b110),
-        GREEN = new TColor(0b101),
-        BLUE = new TColor(0b011),
-        WHITE = new TColor(0b000),
-        BLACK = new TColor(0b111);
+        CYAN = new TColor(1),
+        MAGENTA = new TColor(2),
+        YELLOW = new TColor(4),
+        RED = new TColor(6),
+        GREEN = new TColor(5),
+        BLUE = new TColor(3),
+        WHITE = new TColor(0),
+        BLACK = new TColor(7);
 
     private int color;
     
@@ -39,9 +39,13 @@ public class TColor {
         return new TColor(mixValue);
     }
 
-    private static bool IsPrimary(TColor c) => c == CYAN || c == MAGENTA || c == YELLOW || c == WHITE;
+    private static bool IsPrimary(TColor c) {
+        return c == CYAN || c == MAGENTA || c == YELLOW || c == WHITE;
+    }
 
-    private static bool IsSecondary(TColor c) => c == RED || c == GREEN || c == BLUE;
+    private static bool IsSecondary(TColor c) {
+        return c == RED || c == GREEN || c == BLUE;
+    }
 
     public override bool Equals(object obj) {
         var color = obj as TColor;
@@ -53,9 +57,13 @@ public class TColor {
         return 790427672 + color.GetHashCode();
     }
 
-    public static bool operator >(TColor c1, TColor c2) => c1.GetValue() > c2.GetValue();
+    public static bool operator >(TColor c1, TColor c2) {
+        return c1.GetValue() > c2.GetValue();
+    }
 
-    public static bool operator <(TColor c1, TColor c2) => c1.GetValue() < c2.GetValue();
+    public static bool operator <(TColor c1, TColor c2) {
+        return c1.GetValue() < c2.GetValue();
+    }
 
     public static bool operator==(TColor c1, TColor c2) {
         return c1.GetValue() == c2.GetValue();
