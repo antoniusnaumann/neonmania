@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ProjectileController : MonoBehaviour {
-
+	public CMYColor color;
+	public float velocity;
+	public Vector3 direction;
 	// Use this for initialization
 	void Start () {
 		

@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour {
 
     private Rigidbody rb;
-    GameObject projectilePrefab;
+    private PlayerColorChanger colorChanger;
+    private GameObject projectilePrefab;
 
     public float acceleration = 10f;
     public float maxSpeed = 30f;
@@ -14,7 +15,9 @@ public class PlayerControl : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody>();
-        projectilePrefab = Resources.Load("Projectile") as GameObject;    }
+        colorChanger = GetComponent<PlayerColorChanger>();
+        projectilePrefab = Resources.Load("Projectile") as GameObject;
+    }
 
     // Before performing physics calculation
     void FixedUpdate() {
@@ -54,6 +57,10 @@ public class PlayerControl : MonoBehaviour {
             if(Input.GetAxis("AButton") != 0){
                 Vector3 aimVector = new Vector3(shootHorizontal, 10f, shootVertical);
                 GameObject projectile = Instantiate(projectilePrefab, transform) as GameObject;
+                ProjectileController projectileController = projectile.GetComponent<ProjectileController>();
+                projectileController.color = colorChanger.GetColor();
+                projectileController.direction = aimVector();
+                projectileController.velocity = 40f;
             }
         }
 		
