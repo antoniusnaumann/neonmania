@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerColorChanger : MonoBehaviour {
 
     private Rigidbody rb;
-    private int color = 0;
+    private int color = 1;
 
     private void Start () {
         rb = GetComponent<Rigidbody>();
@@ -33,6 +33,6 @@ public class PlayerColorChanger : MonoBehaviour {
     }
 
     private void ApplyColor(CMYColor color) {
-
+        GetComponent<Renderer>().material.SetColor(Shader.PropertyToID("Color_D1E4B0CA"), color.AsHDRColor(7f));
     }
 }
