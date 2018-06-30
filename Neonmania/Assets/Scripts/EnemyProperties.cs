@@ -9,7 +9,7 @@ public class EnemyProperties : ScriptableObject
 	[Header("Movement Properties")]
 	[Range(0f, 4f)]
 	public float speed = 2f;
-	public EnemyPathfinding movementLogic;
+	public EnemyController movementLogic;
 
 	[Header("Strength")]
 	[Range(0f, 1f)]
