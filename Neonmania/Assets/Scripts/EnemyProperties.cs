@@ -16,6 +16,7 @@ public class EnemyProperties : ScriptableObject
 	// higher is weaker
 	public float weakness = 1f;
     public int level = 1;
+    public float attackDamage = 1f;
 	[Range(0.3f, 5f)]
 	// higher is greater
 	public float scale = 0.8f;
