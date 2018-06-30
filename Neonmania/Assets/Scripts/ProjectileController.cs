@@ -41,6 +41,6 @@ public class ProjectileController : MonoBehaviour {
 	}
 
     private void ApplyColor(CMYColor color) {
-
+        GetComponent<Renderer>().material.SetColor(Shader.PropertyToID("Color_D1E4B0CA"), color.AsColor());
     }
 }
