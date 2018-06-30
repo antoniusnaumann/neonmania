@@ -19,17 +19,21 @@ public class EnemyPathfinding : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        GetComponent<Renderer>().material.SetFloat(Shader.PropertyToID("Vector1_30FACB43"), (timeToDie - timeDead) / timeToDie);
+    }
+
+    // Update is called once per frame
+    void Update () {
 
         if(dead) {
 
             timeDead += Time.deltaTime;
 
-            GetComponent<Renderer>().material.SetFloat(Shader.PropertyToID("Vector1_30FACB43"), timeToDie - timeDead);
+            GetComponent<Renderer>().material.SetFloat(Shader.PropertyToID("Vector1_30FACB43"), (timeToDie - timeDead) / timeToDie);
+
+            if(timeToDie - timeDead <= 0) {
+                Destroy(this.gameObject);
+            }
 
             return;
         }
