@@ -64,7 +64,7 @@ public class PlayerControl : MonoBehaviour {
                 StartCoroutine(Shoot(aimVector));
                 GameObject projectile = Instantiate(projectilePrefab, transform.position, transform.rotation); //Quaternion.identity
                 ProjectileController projectileController = projectile.GetComponent<ProjectileController>();
-                //projectileController.color = colorChanger.GetColor();
+                projectileController.color = colorChanger.GetColor();
                 projectileController.direction = aimVector;
                 projectileController.velocity = 40f;
                 // Destroy the projectile after 2 seconds

@@ -63,4 +63,7 @@ public sealed class CMYColor {
 		return new Color(1.0f - this.c, 1.0f - this.m, 1.0f - this.y);
 	}
 
+    public override string ToString() {
+        return String.Format("C: {0}; M: {1}; Y: {2}", c, m, y);
+    }
 }
