@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e391b02078ceb37429d7c34238a0cc72, type: 3}
-  m_Name: New EnemyType
+  m_Name: Boss_full_tank
   m_EditorClassIdentifier: 
   speed: 2
   movementLogic: {fileID: 0}

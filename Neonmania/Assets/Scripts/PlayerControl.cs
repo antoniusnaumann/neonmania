@@ -6,22 +6,28 @@ public class PlayerControl : MonoBehaviour {
 
     private Rigidbody rb;
     private PlayerColorChanger colorChanger;
-    private GameObject projectilePrefab;
+    private ProjectileController projectileController;
+    public GameObject projectilePrefab;
 
-    public float acceleration = 10f;
-    public float maxSpeed = 30f;
-    public float deceleration = 2f;
+    public float acceleration;
+    public float maxSpeed;
+    public float deceleration;
+    public float shotCooldown;
+    public bool readyToShoot;
 
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody>();
         colorChanger = GetComponent<PlayerColorChanger>();
-        projectilePrefab = Resources.Load("Projectile") as GameObject;
+        acceleration = 10f;
+        maxSpeed = 30f;
+        deceleration = 2f;
+        shotCooldown = 0.5f;
+        readyToShoot = true;
     }
 
     // Before performing physics calculation
     void FixedUpdate() {
-
         float moveHorizontal = Input.GetAxis("LeftJoystickHorizontal");
         float moveVertical = Input.GetAxis("LeftJoystickVertical");
 
@@ -34,7 +40,10 @@ public class PlayerControl : MonoBehaviour {
             rb.AddForce(mirrorDirection.normalized * deceleration);
         }
         else
-        {
+        {   
+            //Debug.Log("H: " + moveHorizontal);
+            //Debug.Log("V: " + moveVertical);   
+
             if (rb.velocity.magnitude > maxSpeed)
             {
                 rb.velocity = rb.velocity.normalized * maxSpeed;
@@ -45,24 +54,35 @@ public class PlayerControl : MonoBehaviour {
             }
         }
 
+        float shootHorizontal = Input.GetAxis("RightJoystickHorizontal");
+        float shootVertical = Input.GetAxis("RightJoystickVertical");    
         
+        if (shootHorizontal != 0 || shootVertical != 0) {
+            if(readyToShoot) {
+                readyToShoot = false;
+                Vector3 aimVector = new Vector3(shootHorizontal, 0f, shootVertical);
+                StartCoroutine(Shoot(aimVector));
+                GameObject projectile = Instantiate(projectilePrefab, transform.position, transform.rotation); //Quaternion.identity
+                ProjectileController projectileController = projectile.GetComponent<ProjectileController>();
+                //projectileController.color = colorChanger.GetColor();
+                projectileController.direction = aimVector;
+                projectileController.velocity = 40f;
+                // Destroy the projectile after 2 seconds
+                Destroy(projectile, 2.0f); 
+
+            }
+        }
+
+        
+    }
+
+    public IEnumerator Shoot (Vector3 aimVector) {
+        yield return new WaitForSeconds(shotCooldown);
+        readyToShoot = true;
     }
 
     // Update is called once per frame
     void Update () {
-        float shootHorizontal = Input.GetAxis("RightJoystickHorizontal");
-        float shootVertical = Input.GetAxis("RightJoystickHorizontal");        
 
-        if (shootHorizontal != 0 || shootHorizontal != 0) {
-            if(Input.GetAxis("AButton") != 0){
-                Vector3 aimVector = new Vector3(shootHorizontal, 10f, shootVertical);
-                GameObject projectile = Instantiate(projectilePrefab, transform) as GameObject;
-                ProjectileController projectileController = projectile.GetComponent<ProjectileController>();
-                //projectileController.color = colorChanger.GetColor();
-                //projectileController.direction = aimVector();
-                //projectileController.velocity = 40f;
-            }
-        }
-		
 	}
 }
