@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyPathfinding : MonoBehaviour {
+public class EnemyController : MonoBehaviour {
 
     public Transform player;
 
@@ -20,6 +20,7 @@ public class EnemyPathfinding : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         GetComponent<Renderer>().material.SetFloat(Shader.PropertyToID("Vector1_30FACB43"), (timeToDie - timeDead) / timeToDie);
+        Debug.Log(GetComponent<Renderer>().material.GetFloat(Shader.PropertyToID("Vector1_30FACB43")) );
     }
 
     // Update is called once per frame
