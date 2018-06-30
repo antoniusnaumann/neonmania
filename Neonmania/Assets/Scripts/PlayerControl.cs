@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour {
 
-    private Rigidbody rb;
-    private PlayerColorChanger colorChanger;
-    private ProjectileController projectileController;
     public GameObject projectilePrefab;
 
     public float acceleration;
@@ -14,6 +11,10 @@ public class PlayerControl : MonoBehaviour {
     public float deceleration;
     public float shotCooldown;
     public bool readyToShoot;
+
+    private Rigidbody rb;
+    private PlayerColorChanger colorChanger;
+    private ProjectileController projectileController;
 
 	// Use this for initialization
 	void Start () {
@@ -26,7 +27,6 @@ public class PlayerControl : MonoBehaviour {
         readyToShoot = true;
     }
 
-    // Before performing physics calculation
     void FixedUpdate() {
         float moveHorizontal = Input.GetAxis("LeftJoystickHorizontal");
         float moveVertical = -Input.GetAxis("LeftJoystickVertical");
@@ -72,8 +72,6 @@ public class PlayerControl : MonoBehaviour {
 
             }
         }
-
-        
     }
 
     public IEnumerator Shoot (Vector3 aimVector) {
@@ -81,8 +79,9 @@ public class PlayerControl : MonoBehaviour {
         readyToShoot = true;
     }
 
-    // Update is called once per frame
     void Update () {
-
+        if (Input.GetKeyDown(KeyCode.Joystick1Button4)) {
+            colorChanger.SwitchColor();
+        }
 	}
 }

@@ -14,7 +14,7 @@ public class PlayerColorChanger : MonoBehaviour {
         ApplyColor(GetColor());
 	}
 
-    private void SwitchColor() {
+    public void SwitchColor() {
         color = (color + 1) % 3;
         ApplyColor(GetColor());
     }
