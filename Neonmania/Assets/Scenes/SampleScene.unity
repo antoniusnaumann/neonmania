@@ -378,6 +378,11 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114976053587055040, guid: da9c70ea3ed54464b955c8fdd666b19d,
+        type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1079610143}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: da9c70ea3ed54464b955c8fdd666b19d, type: 2}
   m_IsPrefabParent: 0
@@ -578,6 +583,12 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 2ec06f4ca7b585742a382fc1140ef8f8, type: 2}
+    - target: {fileID: 114664706713525860, guid: d1d07de129d15a74390304540206fded,
+        type: 2}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 1931415397430566, guid: 3c962cc7998b9463cb5d83d57f03468e,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d1d07de129d15a74390304540206fded, type: 2}
   m_IsPrefabParent: 0

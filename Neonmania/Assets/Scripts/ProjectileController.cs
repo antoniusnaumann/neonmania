@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ProjectileController : MonoBehaviour {
-	public Rigidbody rb;
+	private Rigidbody rb;
 	public CMYColor color;
 	public float velocity;
 	public Vector3 direction;

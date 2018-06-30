@@ -112,9 +112,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6101d1346959a4043b3db34ef5c5f888, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 1931415397430566, guid: 3c962cc7998b9463cb5d83d57f03468e,
+    type: 2}
   acceleration: 1
   maxSpeed: 10
   deceleration: 2
+  shotCooldown: 0
+  readyToShoot: 0
 --- !u!135 &135105577582497998
 SphereCollider:
   m_ObjectHideFlags: 1
