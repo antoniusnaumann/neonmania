@@ -18,7 +18,7 @@ public class GUIController : MonoBehaviour {
 
     public void AddWave()
     {
-
+        wave += 1;
     }
 
     // Use this for initialization
