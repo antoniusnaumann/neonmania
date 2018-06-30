@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kAssetVersion: 2
   m_MaxPixelLights: 4
-  m_SupportsVertexLight: 0
+  m_SupportsVertexLight: 1
   m_RequireDepthTexture: 0
   m_RequireSoftParticles: 0
   m_SupportsHDR: 1
