@@ -27,4 +27,5 @@ public class EnemyProperties : ScriptableObject
 	[Header("Boss Properties")]
 	// if true, players
 	public bool isBoss = false;
+    public int bossAttackType = 0;
 }
