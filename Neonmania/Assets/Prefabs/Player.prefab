@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 135105577582497998}
   - component: {fileID: 114664706713525860}
   - component: {fileID: 54184480449837732}
+  - component: {fileID: 114997818589997276}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -119,6 +120,17 @@ MonoBehaviour:
   deceleration: 2
   shotCooldown: 0
   readyToShoot: 0
+--- !u!114 &114997818589997276
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1978182068885426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e68807ba205749440827fc5e71ba7c09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &135105577582497998
 SphereCollider:
   m_ObjectHideFlags: 1

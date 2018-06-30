@@ -34,4 +34,8 @@ public class EnemyPathfinding : MonoBehaviour {
     void UpdateEnemyPath() {
         direction = (player.position - transform.position).normalized;
     }
+
+    public void OnDeath() {
+        Debug.Log("Death");
+    }
 }
