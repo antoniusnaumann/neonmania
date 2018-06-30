@@ -77,6 +77,7 @@ public class WaveSpawner : MonoBehaviour {
         GameObject newEnemy = Instantiate(enemy, spawnPoint, new Quaternion());
 
         newEnemy.transform.localScale = new Vector3(prop.scale, prop.scale, prop.scale);
+        newEnemy.GetComponent<SphereCollider>().radius = .5f;
         newEnemy.GetComponent<EnemyPathfinding>().speed = prop.speed;
         newEnemy.GetComponent<EnemyPathfinding>().player = player;
         newEnemy.GetComponent<EnemyPropertyController>().properties = prop;
