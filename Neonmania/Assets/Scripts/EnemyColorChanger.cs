@@ -17,7 +17,7 @@ public class EnemyColorChanger : MonoBehaviour {
 	}
 	
 	private void Update () {
-        GetComponent<Material>().color = currentColor.AsColor();
+        //GetComponent<Material>().color = currentColor.AsColor();
 	}
 
     private void OnCollisionEnter(Collision collision) {

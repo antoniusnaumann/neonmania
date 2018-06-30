@@ -9,10 +9,12 @@ public class EnemyPropertyController : MonoBehaviour {
     private float lifetime;
 
     void Start() {
-        lifetime = Time.time;
+        lifetime = 0f;
     }
 
     void Update() {
-        GetComponent<Renderer>().material.SetFloat("Time", Time.time - lifetime);
+        lifetime += Time.deltaTime;
+
+        GetComponent<Renderer>().material.SetFloat(Shader.PropertyToID("Vector1_30FACB43"), lifetime);
     }
 }
