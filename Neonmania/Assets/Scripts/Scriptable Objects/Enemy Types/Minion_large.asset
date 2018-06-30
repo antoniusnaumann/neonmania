@@ -14,7 +14,7 @@ MonoBehaviour:
   speed: 1
   movementLogic: {fileID: 0}
   weakness: 0.25
-  level: 1
+  level: 2
   scale: 1.2
   strengthIndicator: 0.5
   deathHandler: {fileID: 0}
