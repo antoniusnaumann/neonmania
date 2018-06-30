@@ -10,6 +10,10 @@ public class EnemyPathfinding : MonoBehaviour {
     public float speed = 1f;
     public float checkFrequency = 1f;
 
+    public float timeToDie = 1f;
+    private float timeDead = 0f;
+    private bool dead = false;
+
     private float lastCheck = 0f;
     private Vector3 direction;
 
@@ -20,6 +24,16 @@ public class EnemyPathfinding : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if(dead) {
+
+            timeDead += Time.deltaTime;
+
+            GetComponent<Renderer>().material.SetFloat(Shader.PropertyToID("Vector1_30FACB43"), timeToDie - timeDead);
+
+            return;
+        }
+
         lastCheck += Time.deltaTime;
 
         if(lastCheck >= checkFrequency) {
@@ -36,6 +50,6 @@ public class EnemyPathfinding : MonoBehaviour {
     }
 
     public void OnDeath() {
-        Debug.Log("Death");
+        dead = true;
     }
 }

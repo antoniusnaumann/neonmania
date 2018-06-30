@@ -29,7 +29,7 @@ public class PlayerControl : MonoBehaviour {
     // Before performing physics calculation
     void FixedUpdate() {
         float moveHorizontal = Input.GetAxis("LeftJoystickHorizontal");
-        float moveVertical = Input.GetAxis("LeftJoystickVertical");
+        float moveVertical = -Input.GetAxis("LeftJoystickVertical");
 
         Vector3 v3 = new Vector3(moveHorizontal * acceleration, 0f, moveVertical * acceleration);
 
@@ -55,7 +55,7 @@ public class PlayerControl : MonoBehaviour {
         }
 
         float shootHorizontal = Input.GetAxis("RightJoystickHorizontal");
-        float shootVertical = Input.GetAxis("RightJoystickVertical");    
+        float shootVertical = -Input.GetAxis("RightJoystickVertical");    
         
         if (shootHorizontal != 0 || shootVertical != 0) {
             if(readyToShoot) {

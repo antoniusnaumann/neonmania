@@ -88,7 +88,7 @@ public class WaveSpawner : MonoBehaviour {
     }
 
     private EnemyProperties RandomEnemyProperty(EnemyProperties[] filteredProps) {
-        return filteredProps[(int) (UnityEngine.Random.Range(0, filteredProps.Length - 1))];
+        return filteredProps[(int) (UnityEngine.Random.Range(0, filteredProps.Length))];
     }
 
     private EnemyProperties[] FilterByStrength(EnemyProperties[] props, float strength) {
