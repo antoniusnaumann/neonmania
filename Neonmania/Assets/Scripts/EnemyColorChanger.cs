@@ -66,6 +66,6 @@ public class EnemyColorChanger : MonoBehaviour {
     }
 
     private void ApplyColor(CMYColor color) {
-        GetComponent<Renderer>().material.SetColor(Shader.PropertyToID("Color_53254DB6"), color.AsColor());
+        GetComponent<Renderer>().material.SetColor(Shader.PropertyToID("Color_53254DB6"), color.AsHDRColor());
     }
 }

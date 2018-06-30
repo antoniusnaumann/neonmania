@@ -5,6 +5,7 @@ using UnityEngine;
 
 public sealed class CMYColor {
 
+
 	public static readonly CMYColor
 	CYAN = new CMYColor(1),
 		MAGENTA = new CMYColor(2),
@@ -62,5 +63,9 @@ public sealed class CMYColor {
 	public Color AsColor() {
 		return new Color(1.0f - this.c, 1.0f - this.m, 1.0f - this.y);
 	}
+
+    public Color AsHDRColor() {
+        return new Vector4(1.0f -this.c, 1.0f - this.m, 1.0f - this.y, 3f);
+    }
 
 }
