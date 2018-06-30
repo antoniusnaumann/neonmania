@@ -5,30 +5,35 @@ using UnityEngine;
 public class EnemyColorChanger : MonoBehaviour {
 
     private EnemyProperties enemy;
-    public IKillable killHandler;
-
+    private EnemyPathfinding killHandler;
     private CMYColor currentColor;
 
 
 	private void Start () {
         enemy = GetComponent<EnemyPropertyController>().properties;
-
+        killHandler = GetComponent<EnemyPathfinding>();
         currentColor = enemy.color;
+
+        ApplyColor(currentColor);
 	}
 	
 	private void Update () {
-        //GetComponent<Material>().color = currentColor.AsColor();
-	}
+
+        ApplyColor(currentColor);
+    }
 
     private void OnCollisionEnter(Collision collision) {
         if (collision.collider.CompareTag("PlayerProjectile")) {
-            // TODO Change when Jasper is ready
-            // CMYColor hitColor = collision.collider.GetComponent<ProjectileController>().Color;
-            // currentColor += enemy.weakness * hitColor;
+            CMYColor hitColor = collision.collider.GetComponent<ProjectileController>().color;
+            currentColor += enemy.weakness * hitColor;
 
             if (currentColor.IsBlack()) {
-                killHandler.Kill();
+                killHandler.OnDeath();
             }
         }
+    }
+
+    private void ApplyColor(CMYColor color) {
+        // TODO
     }
 }
