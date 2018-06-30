@@ -35,6 +35,8 @@ public class EnemyController : MonoBehaviour {
 
             GetComponent<Renderer>().material.SetFloat(Shader.PropertyToID("Vector1_30FACB43"), timeToDie - timeDead);
 
+            if(timeToDie - timeDead <= 0) Destroy(this.gameObject);
+
             return;
         }
 

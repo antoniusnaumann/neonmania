@@ -82,7 +82,7 @@ public class WaveSpawner : MonoBehaviour {
         newEnemy.GetComponent<EnemyController>().player = player;
         newEnemy.GetComponent<EnemyPropertyController>().properties = prop;
 
-        newEnemy.transform.SetParent(transform);
+        //newEnemy.transform.SetParent(transform);
 
         return strength - prop.strengthIndicator;
     }

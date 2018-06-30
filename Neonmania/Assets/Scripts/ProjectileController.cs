@@ -9,6 +9,9 @@ public class ProjectileController : MonoBehaviour {
 	public float velocity;
 	public Vector3 direction;
 
+    /*public GameObject doNotAssignManually;
+    private bool stoppedFlying = false;*/
+
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody>();
@@ -17,5 +20,20 @@ public class ProjectileController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+       /* if(doNotAssignManually != null) {
+
+            if (!stoppedFlying) {
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+
+                stoppedFlying = true;
+            }
+
+            Vector3 vector = doNotAssignManually.transform.position - this.transform.position;
+
+            vector.Normalize();
+
+            transform.position = vector * velocity * Time.deltaTime;
+        }*/
 	}
 }

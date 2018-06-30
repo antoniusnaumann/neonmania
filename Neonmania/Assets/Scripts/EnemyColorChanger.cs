@@ -37,12 +37,18 @@ public class EnemyColorChanger : MonoBehaviour {
 
     private void OnTriggerEnter(Collider collider) {
         if (collider.CompareTag("PlayerProjectile")) {
+
+           /* if(collider.GetComponent<ProjectileController>().doNotAssignManually != null)
+                collider.GetComponent<ProjectileController>().doNotAssignManually = this.gameObject; */
+
             CMYColor hitColor = collider.GetComponent<ProjectileController>().color;
             currentColor += enemy.weakness * hitColor;
 
             if (currentColor.IsBlack()) {
                 killHandler.OnDeath();
             }
+
+            Destroy(collider.gameObject);
         }
     }
 
@@ -62,6 +68,6 @@ public class EnemyColorChanger : MonoBehaviour {
     }
 
     private void ApplyColor(CMYColor color) {
-        GetComponent<Renderer>().material.SetColor(Shader.PropertyToID("Color_53254DB6"), color.AsHDRColor(1f));
+        GetComponent<Renderer>().material.SetColor(Shader.PropertyToID("Color_53254DB6"), color.AsColor());
     }
 }
