@@ -10,6 +10,8 @@ public class EnemyPropertyController : MonoBehaviour {
 
     void Start() {
         lifetime = 0f;
+
+        
     }
 
     void Update() {

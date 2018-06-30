@@ -12,7 +12,7 @@ public class EnemyColorChanger : MonoBehaviour {
 	private void Start () {
         enemy = GetComponent<EnemyPropertyController>().properties;
         killHandler = GetComponent<EnemyPathfinding>();
-        currentColor = enemy.color;
+        // currentColor = GetComponent<EnemyPropertyController>().color;
 
         ApplyColor(currentColor);
 	}
@@ -34,6 +34,6 @@ public class EnemyColorChanger : MonoBehaviour {
     }
 
     private void ApplyColor(CMYColor color) {
-        // TODO
+        GetComponent<Renderer>().material.SetColor(Shader.PropertyToID("Color_53254DB6"), color.AsColor());
     }
 }
