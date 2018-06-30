@@ -22,13 +22,15 @@ public class EnemyController : MonoBehaviour {
     private Rigidbody rb;
     private EnemyProperties enemy;
 
+    private float lifetime;
+
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody>();
         enemy = GetComponent<EnemyPropertyController>().properties;
-        Debug.Log(GetComponent<Renderer>().material.GetFloat(Shader.PropertyToID("Vector1_30FACB43")));
+        lifetime = 0f;
     }
-
+    
     // Update is called once per frame
     void Update () {
 
@@ -45,7 +47,11 @@ public class EnemyController : MonoBehaviour {
 
         lastCheck += Time.deltaTime;
 
-        if(lastCheck >= checkFrequency) {
+        lifetime += Time.deltaTime;
+
+        GetComponent<Renderer>().material.SetFloat(Shader.PropertyToID("Vector1_30FACB43"), lifetime);
+
+        if (lastCheck >= checkFrequency) {
             lastCheck = 0;
 
             UpdateEnemyPath();
