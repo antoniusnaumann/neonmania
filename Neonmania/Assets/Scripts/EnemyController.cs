@@ -9,18 +9,23 @@ public class EnemyController : MonoBehaviour {
 
     public float speed = 1f;
     public float checkFrequency = 1f;
+    public GUIController GUI;
 
     public float timeToDie = 1f;
     private float timeDead = 0f;
     private bool dead = false;
 
+   
     private float lastCheck = 0f;
     private Vector3 direction;
 
+
+
+
 	// Use this for initialization
 	void Start () {
-		
-	}
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -50,8 +55,8 @@ public class EnemyController : MonoBehaviour {
     }
 
     public void OnDeath() {
+        GUI.AddScore(1);
         dead = true;
-
         Debug.Log("Dead");
     }
 }
