@@ -13,6 +13,8 @@ public class WaveSpawner : MonoBehaviour {
     public EnemyProperties[] minionTypes;
     public EnemyProperties[] bossTypes;
 
+    private List<GameObject> waveEnemies;
+
     public float timeBetweenWaves = 5f;
     public float startCountdown = 2f;
     public float timeBetweenEnemies = .5f;
@@ -21,6 +23,9 @@ public class WaveSpawner : MonoBehaviour {
     private int waveNumber = 0;
 
     private Bounds bounds;
+
+    private bool isWaveSpawning = false;
+    private bool bossAlive = false;
 
     // Use this for initialization
     void Start () {
@@ -31,11 +36,12 @@ public class WaveSpawner : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         if (startCountdown < 0f) {
+            isWaveSpawning = true;
             StartCoroutine(SpawnWave());
             startCountdown = timeBetweenWaves;
         }
 
-        startCountdown -= Time.deltaTime;
+        if(!isWaveSpawning && !bossAlive) startCountdown -= Time.deltaTime;
     }
 
     IEnumerator SpawnWave() {
@@ -49,6 +55,7 @@ public class WaveSpawner : MonoBehaviour {
             yield return new WaitForSeconds(timeBetweenEnemies);
         }
 
+        isWaveSpawning = false;
         waveNumber++;
     }
 
@@ -57,7 +64,13 @@ public class WaveSpawner : MonoBehaviour {
         EnemyProperties[] props = boss ? bossTypes : minionTypes;
         EnemyProperties[] filteredProps = FilterByStrength(props, strength);
 
-        EnemyProperties prop = RandomEnemyProperty(filteredProps);
+        EnemyProperties prop;
+
+        if (boss)
+            prop = StrongestBoss(filteredProps);
+        else
+            prop = RandomEnemyProperty(filteredProps);
+        
 
         if (prop == null) return strength;
 
@@ -84,9 +97,34 @@ public class WaveSpawner : MonoBehaviour {
         newEnemy.GetComponent<EnemyPropertyController>().properties = prop;
         newEnemy.GetComponent<EnemyController>().GUI = gUIController.GetComponent<GUIController>();
 
+        if (boss) {
+            bossAlive = true;
+            newEnemy.GetComponent<EnemyController>().callback = BossKilledCallback;
+        }
+
         //newEnemy.transform.SetParent(transform);
 
         return strength - prop.strengthIndicator;
+    }
+
+    private EnemyProperties StrongestBoss(EnemyProperties[] filteredProps) {
+        EnemyProperties max = filteredProps[0];
+
+        for (int i = 1; i < filteredProps.Length; i++) {
+            if (max.strengthIndicator < filteredProps[i].strengthIndicator)
+                max = filteredProps[i];
+            else if (max.strengthIndicator == filteredProps[i].strengthIndicator) {
+                if (UnityEngine.Random.value <= 0.5f) max = filteredProps[i];
+            }
+        }
+
+        return max;
+    }
+
+    private void BossKilledCallback() {
+        bossAlive = false;
+
+        Debug.Log("Yep, that is how you can use callbacks in C#");
     }
 
     private EnemyProperties RandomEnemyProperty(EnemyProperties[] filteredProps) {
@@ -103,4 +141,5 @@ public class WaveSpawner : MonoBehaviour {
 
         return newProps.ToArray();
     }
+
 }

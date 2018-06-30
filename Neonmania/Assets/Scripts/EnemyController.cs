@@ -14,7 +14,6 @@ public class EnemyController : MonoBehaviour {
     public float timeToDie = 1f;
     private float timeDead = 0f;
     private bool dead = false;
-
    
     private float lastCheck = 0f;
     private Vector3 direction;
@@ -30,7 +29,9 @@ public class EnemyController : MonoBehaviour {
         enemy = GetComponent<EnemyPropertyController>().properties;
         lifetime = 0f;
     }
-    
+
+    internal Action callback;
+
     // Update is called once per frame
     void Update () {
 
@@ -40,7 +41,11 @@ public class EnemyController : MonoBehaviour {
 
             GetComponent<Renderer>().material.SetFloat(Shader.PropertyToID("Vector1_30FACB43"), timeToDie - timeDead);
 
-            if(timeToDie - timeDead <= 0) Destroy(this.gameObject);
+            if (timeToDie - timeDead <= 0) {
+                if(callback != null) callback();
+
+                Destroy(this.gameObject);
+            }
 
             return;
         }
