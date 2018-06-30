@@ -51,5 +51,7 @@ public class EnemyPathfinding : MonoBehaviour {
 
     public void OnDeath() {
         dead = true;
+
+        Debug.Log("Dead");
     }
 }
