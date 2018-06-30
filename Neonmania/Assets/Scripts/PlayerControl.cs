@@ -15,7 +15,6 @@ public class PlayerControl : MonoBehaviour {
     private Rigidbody rb;
     private PlayerColorChanger colorChanger;
     private ProjectileController projectileController;
-    private float damage = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -86,14 +85,7 @@ public class PlayerControl : MonoBehaviour {
         }
 	}
 
-    public void OnDeath() {
-
-    }
-
     public void AddDamage(float attackDamage) {
-        damage += attackDamage;
-        if (damage >= 100) {
-            OnDeath();
-        }
+
     }
 }

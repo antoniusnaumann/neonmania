@@ -8,6 +8,7 @@ public class WaveSpawner : MonoBehaviour {
     public GameObject enemy;
     public Transform spawnPlane;
     public GameObject player;
+    public GUIController gUIController;
 
     public EnemyProperties[] minionTypes;
     public EnemyProperties[] bossTypes;
@@ -81,6 +82,7 @@ public class WaveSpawner : MonoBehaviour {
         newEnemy.GetComponent<EnemyController>().speed = prop.speed;
         newEnemy.GetComponent<EnemyController>().player = player;
         newEnemy.GetComponent<EnemyPropertyController>().properties = prop;
+        newEnemy.GetComponent<EnemyController>().GUI = gUIController.GetComponent<GUIController>();
 
         //newEnemy.transform.SetParent(transform);
 
