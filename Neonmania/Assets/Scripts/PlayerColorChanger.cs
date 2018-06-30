@@ -5,17 +5,13 @@ using UnityEngine;
 
 public class PlayerColorChanger : MonoBehaviour {
 
-
     private Rigidbody rb;
     private int color = 0;
 
     private void Start () {
         rb = GetComponent<Rigidbody>();
+        color = UnityEngine.Random.Range(0, 3);
         ApplyColor(GetColor());
-	}
-	
-	private void Update () {
-		
 	}
 
     private void SwitchColor() {

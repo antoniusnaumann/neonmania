@@ -23,9 +23,6 @@ public class EnemyProperties : ScriptableObject
 	// higher is stronger 
 	public float strengthIndicator = 0.1f;
 
-    [Header("Handlers")]
-    public KillHandler deathHandler;
-
 	[Header("Boss Properties")]
 	// if true, players
 	public bool isBoss = false;

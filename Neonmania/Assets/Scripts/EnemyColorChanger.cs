@@ -28,9 +28,6 @@ public class EnemyColorChanger : MonoBehaviour {
         int level = GetComponent<EnemyPropertyController>().properties.level;
 
         currentColor = GetLevelColor(level);
-
-        Debug.Log(level + ": " + currentColor);
-
         ApplyColor(currentColor);
 	}
 	
