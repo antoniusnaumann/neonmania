@@ -9,13 +9,16 @@ public class EnemyController : MonoBehaviour {
 
     public float speed = 1f;
     public float checkFrequency = 1f;
+    public GUIController GUI;
 
     public float timeToDie = 1f;
     private float timeDead = 0f;
     private bool dead = false;
 
+   
     private float lastCheck = 0f;
     private Vector3 direction;
+
     private Rigidbody rb;
     private EnemyProperties enemy;
 
@@ -34,6 +37,8 @@ public class EnemyController : MonoBehaviour {
             timeDead += Time.deltaTime;
 
             GetComponent<Renderer>().material.SetFloat(Shader.PropertyToID("Vector1_30FACB43"), timeToDie - timeDead);
+
+            if(timeToDie - timeDead <= 0) Destroy(this.gameObject);
 
             return;
         }
@@ -61,8 +66,8 @@ public class EnemyController : MonoBehaviour {
     }
 
     public void OnDeath() {
+        GUI.AddScore(1);
         dead = true;
-
         Debug.Log("Dead");
     }
 }

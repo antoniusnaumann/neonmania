@@ -69,6 +69,6 @@ public sealed class CMYColor {
     }
 
     public Color AsHDRColor(float glow) {
-        return new Vector4(1.0f -this.c, 1.0f - this.m, 1.0f - this.y, glow);
+        return new Vector4(1.0f - this.c, 1.0f - this.m, 1.0f - this.y, glow);
     }
 }

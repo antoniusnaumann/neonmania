@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerColorChanger : MonoBehaviour {
 
-    private int color = 1;
+    public int color = 1;
 
     private void Start () {
         color = UnityEngine.Random.Range(0, 3);
@@ -31,6 +31,6 @@ public class PlayerColorChanger : MonoBehaviour {
     }
 
     private void ApplyColor(CMYColor color) {
-        GetComponent<Renderer>().material.SetColor(Shader.PropertyToID("Color_D1E4B0CA"), color.AsHDRColor(7f));
+        GetComponent<Renderer>().material.SetColor(Shader.PropertyToID("Color_D1E4B0CA"), color.AsColor());
     }
 }
