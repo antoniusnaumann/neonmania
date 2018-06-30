@@ -21,12 +21,27 @@ public class EnemyController : MonoBehaviour {
 
     private Rigidbody rb;
     private EnemyProperties enemy;
+    private BossAttackPattern attackPattern;
 
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody>();
         enemy = GetComponent<EnemyPropertyController>().properties;
         Debug.Log(GetComponent<Renderer>().material.GetFloat(Shader.PropertyToID("Vector1_30FACB43")));
+
+        if (enemy.isBoss) {
+            switch (enemy.bossAttackType) {
+                case 0:
+                    attackPattern = new AimAttack(gameObject, player);
+                    break;
+                default:
+                    attackPattern = new NoAttack(gameObject, player);
+                    break;
+            }
+        } else {
+            attackPattern = new NoAttack(gameObject, player);
+        }
+            
     }
 
     // Update is called once per frame
@@ -52,6 +67,8 @@ public class EnemyController : MonoBehaviour {
         }
 
         transform.Translate(direction * speed * Time.deltaTime, Space.World);
+
+        attackPattern.Update();
     }
 
     private void OnCollisionEnter(Collision collision) {
