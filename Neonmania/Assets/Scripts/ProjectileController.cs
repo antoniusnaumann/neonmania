@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ProjectileController : MonoBehaviour {
+
 	private Rigidbody rb;
+
 	public CMYColor color;
 	public float velocity;
 	public Vector3 direction;
@@ -16,6 +18,7 @@ public class ProjectileController : MonoBehaviour {
 	void Start () {
 		rb = GetComponent<Rigidbody>();
 		rb.AddForce(direction.normalized * velocity, ForceMode.Impulse);
+        ApplyColor(color);
 	}
 
 	// Update is called once per frame
@@ -36,4 +39,8 @@ public class ProjectileController : MonoBehaviour {
             transform.position = vector * velocity * Time.deltaTime;
         }*/
 	}
+
+    private void ApplyColor(CMYColor color) {
+
+    }
 }
