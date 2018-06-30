@@ -664,11 +664,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e68807ba205749440827fc5e71ba7c09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1079610143 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4798293186133000, guid: d1d07de129d15a74390304540206fded,
-    type: 2}
-  m_PrefabInternal: {fileID: 1811130874}
 --- !u!1 &1148241113
 GameObject:
   m_ObjectHideFlags: 0
@@ -1123,7 +1118,7 @@ Prefab:
         type: 2}
       propertyPath: player
       value: 
-      objectReference: {fileID: 1079610143}
+      objectReference: {fileID: 1079610139}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: da9c70ea3ed54464b955c8fdd666b19d, type: 2}
   m_IsPrefabParent: 0
@@ -1342,7 +1337,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 1683257992604568, guid: da9c70ea3ed54464b955c8fdd666b19d, type: 2}
   spawnPlane: {fileID: 1323457083}
-  player: {fileID: 1079610143}
+  player: {fileID: 1079610139}
   minionTypes:
   - {fileID: 11400000, guid: d37f1f9f417523947adef0c72bd77ea3, type: 2}
   - {fileID: 11400000, guid: 75edf39147a941649a58939134f2060b, type: 2}

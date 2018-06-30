@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
 
-    public Transform player;
+    public GameObject player;
 
     public float speed = 1f;
     public float checkFrequency = 1f;
@@ -16,11 +16,14 @@ public class EnemyController : MonoBehaviour {
 
     private float lastCheck = 0f;
     private Vector3 direction;
+    private Rigidbody rb;
+    private EnemyProperties enemy;
 
-	// Use this for initialization
-	void Start () {
-        GetComponent<Renderer>().material.SetFloat(Shader.PropertyToID("Vector1_30FACB43"), (timeToDie - timeDead) / timeToDie);
-        Debug.Log(GetComponent<Renderer>().material.GetFloat(Shader.PropertyToID("Vector1_30FACB43")) );
+    // Use this for initialization
+    void Start () {
+        rb = GetComponent<Rigidbody>();
+        enemy = GetComponent<EnemyPropertyController>().properties;
+        Debug.Log(GetComponent<Renderer>().material.GetFloat(Shader.PropertyToID("Vector1_30FACB43")));
     }
 
     // Update is called once per frame
@@ -30,11 +33,7 @@ public class EnemyController : MonoBehaviour {
 
             timeDead += Time.deltaTime;
 
-            GetComponent<Renderer>().material.SetFloat(Shader.PropertyToID("Vector1_30FACB43"), (timeToDie - timeDead) / timeToDie);
-
-            if(timeToDie - timeDead <= 0) {
-                Destroy(this.gameObject);
-            }
+            GetComponent<Renderer>().material.SetFloat(Shader.PropertyToID("Vector1_30FACB43"), timeToDie - timeDead);
 
             return;
         }
@@ -50,11 +49,20 @@ public class EnemyController : MonoBehaviour {
         transform.Translate(direction * speed * Time.deltaTime, Space.World);
     }
 
+    private void OnCollisionEnter(Collision collision) {
+        if (collision.collider.CompareTag("Player")) {
+            rb.AddForce((player.transform.position - transform.position).normalized, ForceMode.Impulse);
+            player.GetComponent<PlayerControl>().AddDamage(enemy.attackDamage);
+        }
+    }
+
     void UpdateEnemyPath() {
-        direction = (player.position - transform.position).normalized;
+        direction = (player.transform.position - transform.position).normalized;
     }
 
     public void OnDeath() {
         dead = true;
+
+        Debug.Log("Dead");
     }
 }

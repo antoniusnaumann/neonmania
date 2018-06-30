@@ -7,7 +7,7 @@ public class WaveSpawner : MonoBehaviour {
 
     public GameObject enemy;
     public Transform spawnPlane;
-    public Transform player;
+    public GameObject player;
 
     public EnemyProperties[] minionTypes;
     public EnemyProperties[] bossTypes;
@@ -71,7 +71,7 @@ public class WaveSpawner : MonoBehaviour {
             float z = UnityEngine.Random.Range(pos.z - scaleZ, pos.z + scaleZ);
 
             spawnPoint = new Vector3(x, prop.scale / 2, z);
-        } while ( (player.position - spawnPoint).magnitude < minimumDistanceToPlayer);
+        } while ( (player.transform.position - spawnPoint).magnitude < minimumDistanceToPlayer);
 
 
         GameObject newEnemy = Instantiate(enemy, spawnPoint, new Quaternion());
