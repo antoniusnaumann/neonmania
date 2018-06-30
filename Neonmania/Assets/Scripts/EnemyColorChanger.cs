@@ -18,13 +18,13 @@ public class EnemyColorChanger : MonoBehaviour {
     };
 
     private EnemyProperties enemy;
-    private EnemyPathfinding killHandler;
+    private EnemyController killHandler;
     private CMYColor currentColor;
 
 
 	private void Start () {
         enemy = GetComponent<EnemyPropertyController>().properties;
-        killHandler = GetComponent<EnemyPathfinding>();
+        killHandler = GetComponent<EnemyController>();
         int level = GetComponent<EnemyPropertyController>().properties.level;
 
         currentColor = GetLevelColor(level);
