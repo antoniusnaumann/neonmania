@@ -6,13 +6,13 @@ public class EnemyPropertyController : MonoBehaviour {
 
     public EnemyProperties properties;
 
-    private double lifetime;
+    private float lifetime;
 
     void Start() {
         lifetime = Time.time;
     }
 
     void Update() {
-        //EnemyMaterial mat = GetComponent<Material>();
+        GetComponent<Renderer>().material.SetFloat("Time", Time.time - lifetime);
     }
 }

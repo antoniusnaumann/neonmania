@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class EnemyColorChanger : MonoBehaviour {
 
-    public EnemyProperties enemy;
+    private EnemyProperties enemy;
     public IKillable killHandler;
 
     private CMYColor currentColor;
 
 
 	private void Start () {
+        enemy = GetComponent<EnemyPropertyController>().properties;
+
         currentColor = enemy.color;
 	}
 	
