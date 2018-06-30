@@ -51,7 +51,7 @@ public class EnemyController : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision) {
         if (collision.collider.CompareTag("Player")) {
-            rb.AddForce((player.transform.position - transform.position).normalized, ForceMode.Impulse);
+            rb.AddForce(-(player.transform.position - transform.position).normalized * 5, ForceMode.Impulse);
             player.GetComponent<PlayerControl>().AddDamage(enemy.attackDamage);
         }
     }
