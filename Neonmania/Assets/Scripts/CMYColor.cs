@@ -62,11 +62,13 @@ public sealed class CMYColor {
 
 	public Color AsColor() {
 		return new Color(1.0f - this.c, 1.0f - this.m, 1.0f - this.y);
-        
 	}
 
-    public Color AsHDRColor() {
-        return new Vector4(1.0f -this.c, 1.0f - this.m, 1.0f - this.y, 5f);
+    public override string ToString() {
+        return String.Format("C: {0}; M: {1}; Y: {2}", c, m, y);
     }
 
+    public Color AsHDRColor() {
+        return new Vector4(1.0f -this.c, 1.0f - this.m, 1.0f - this.y, 7f);
+    }
 }

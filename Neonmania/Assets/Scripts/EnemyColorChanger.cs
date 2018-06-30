@@ -36,10 +36,12 @@ public class EnemyColorChanger : MonoBehaviour {
         ApplyColor(currentColor);
     }
 
-    private void OnCollisionEnter(Collision collision) {
-        if (collision.collider.CompareTag("PlayerProjectile")) {
-            CMYColor hitColor = collision.collider.GetComponent<ProjectileController>().color;
+    private void OnTriggerEnter(Collider collider) {
+        if (collider.CompareTag("PlayerProjectile")) {
+            CMYColor hitColor = collider.GetComponent<ProjectileController>().color;
             currentColor += enemy.weakness * hitColor;
+
+            Debug.Log("Hit: " + currentColor.ToString());
 
             if (currentColor.IsBlack()) {
                 killHandler.OnDeath();
