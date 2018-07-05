@@ -28,8 +28,8 @@ public class PlayerControl : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        float moveHorizontal = Input.GetAxis("LeftJoystickHorizontal");
-        float moveVertical = -Input.GetAxis("LeftJoystickVertical");
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
 
         Vector3 v3 = new Vector3(moveHorizontal * acceleration, 0f, moveVertical * acceleration);
 
@@ -54,8 +54,8 @@ public class PlayerControl : MonoBehaviour {
             }
         }
 
-        float shootHorizontal = Input.GetAxis("RightJoystickHorizontal");
-        float shootVertical = -Input.GetAxis("RightJoystickVertical");    
+        float shootHorizontal = Input.GetAxis("ShootHorizontal");
+        float shootVertical = Input.GetAxis("ShootVertical");    
         
         if (shootHorizontal != 0 || shootVertical != 0) {
             if(readyToShoot) {
@@ -80,7 +80,7 @@ public class PlayerControl : MonoBehaviour {
     }
 
     void Update () {
-        if (Input.GetKeyDown(KeyCode.Joystick1Button4)) {
+        if (Input.GetButtonDown("ColorChanger")) {
             colorChanger.SwitchColor();
         }
 	}
